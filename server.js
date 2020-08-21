@@ -40,6 +40,7 @@ app.use(cookieParser());
 app.use(session({
   resave:true,
   saveUninitialized:true,
+  cookie:{maxAge:3600*1000},
   secret:secret.secretKey,
   store:new MongoStore({url:secret.database,autoReconnect:true})
 }));
