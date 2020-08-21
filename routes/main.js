@@ -206,17 +206,23 @@ router.get('/members',function(req,res){
 
 
 
-router.post("/event", upload.array('myImages', 2), function(req, res){
+router.post("/event", upload.array('myImages', 6), function(req, res){
        var eventCategory        = req.body.eventCategory;
        var name                 = req.body.name;
        var department = req.body.department;
        var priority             = req.body.priority;
        let para                 = req.body.para;
        let impact               = req.body.impact;
-      var img1=fs.readFileSync(req.files[0].path);
-      var img2=fs.readFileSync(req.files[1].path);
-      var enc1=img1.toString('base64');
-      var enc2=img2.toString('base64');
+       let images=[];
+        for(var i=0;i<req.files.length;i++)
+        {
+          let img=fs.readFileSync(req.files[i].path);
+          let enc=img.toString('base64');
+          images.push({contentType: req.files[i].mimetype, data:new Buffer(enc)});
+        }
+      // var img2=fs.readFileSync(req.files[1].path);
+      // var enc1=img1.toString('base64');
+      // var enc2=img2.toString('base64');
        var newEvent    = {
                          eventCategory    : eventCategory,
                          department : department,  
@@ -224,9 +230,18 @@ router.post("/event", upload.array('myImages', 2), function(req, res){
                          priority         : priority,
                          paragraph        : para,
                          impact           : impact,
-                        image1 : {contentType: req.files[0].mimetype, data:new Buffer(enc1)},
-                        image2 : {contentType: req.files[1].mimetype, data:new Buffer(enc2)},
-                  }      
+                        images : images
+                  }   
+                  const directory = 'uploads';
+fs.readdir(directory, (err, files) => {
+  if (err) throw err;
+
+  for (const file of files) {
+    fs.unlink(path.join(directory, file), err => {
+      if (err) throw err;
+    });
+  }
+});   
    Events.create(newEvent, function(err, newlyCreated){            
             if(err){
               console.log(err);
@@ -234,7 +249,8 @@ router.post("/event", upload.array('myImages', 2), function(req, res){
               console.log("success");
               res.redirect('/');
             }
-    });    
+    });
+        
   });
 
 

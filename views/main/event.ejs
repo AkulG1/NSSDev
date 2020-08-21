@@ -19,18 +19,14 @@
                     <p class="left-align light"><%= foundEvent.impact %></p>
                   </div>
               </div>
-              <div class="row">
-                <div class="col l3 m3 s6">
+              <% for(var i=0; i < foundEvent.images.length; i++) { %>
+                <div class="col l4 m6 s12">
                   <!-- <a href="/img/events/<%= foundEvent.image1 %>"> -->
-                    <img class="responsive-img" src="data:<%= foundEvent.image1.contentType %>; base64, <%= foundEvent.image1.data%>">
+                    <img class="responsive-img" src="data:<%= foundEvent.images[i].contentType %>; base64, <%= foundEvent.images[i].data%>">
                   </a>
                 </div>
-                <div class="col l3 m3 s6">
-                  <!-- <a href="/img/events/<%= foundEvent.image2 %>"> -->
-                    <img class="responsive-img" src="data:<%= foundEvent.image2.contentType %>; base64, <%= foundEvent.image2.data%>">
-                  </a>
-                </div>
-              </div>
+                <% } %>
+                
 
               <div class="row">
                 <div class="col l12 m12 s12 center">
