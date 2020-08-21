@@ -237,14 +237,15 @@ router.post("/event", upload.array('myImages', 6), function(req, res){
             if(err){
               console.log(err);
             } else {
-              fs.readdir(directory, (err, files) => {
-                if (err) throw err;
-                for (const file of files) {
-                  fs.unlink(path.join(directory, file), err => {
-                    if (err) throw err;
-                  });
-                }
-              });   
+              // Async error. Started deleting files before reading.
+              // fs.readdir(directory, (err, files) => {
+              //   if (err) throw err;
+              //   for (const file of files) {
+              //     fs.unlink(path.join(directory, file), err => {
+              //       if (err) throw err;
+              //     });
+              //   }
+              // });   
 
               console.log("success");
               res.redirect('/');
