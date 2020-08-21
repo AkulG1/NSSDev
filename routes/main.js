@@ -207,11 +207,6 @@ router.get('/members',function(req,res){
 
 
 router.post("/event", upload.array('myImages', 6), function(req, res){
-  try {
-    fs.mkdirSync(path.join(__dirname, '/uploads/'))
-  } catch (err) {
-    if (err.code !== 'EEXIST') throw err
-  }
        var eventCategory        = req.body.eventCategory;
        var name                 = req.body.name;
        var department = req.body.department;
@@ -242,15 +237,14 @@ router.post("/event", upload.array('myImages', 6), function(req, res){
             if(err){
               console.log(err);
             } else {
-              // Async error. Started deleting files before reading.
-              // fs.readdir(directory, (err, files) => {
-              //   if (err) throw err;
-              //   for (const file of files) {
-              //     fs.unlink(path.join(directory, file), err => {
-              //       if (err) throw err;
-              //     });
-              //   }
-              // });   
+              fs.readdir(directory, (err, files) => {
+                if (err) throw err;
+                for (const file of files) {
+                  fs.unlink(path.join(directory, file), err => {
+                    if (err) throw err;
+                  });
+                }
+              });   
 
               console.log("success");
               res.redirect('/');
