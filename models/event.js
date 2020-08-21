@@ -12,8 +12,7 @@ var EventSchema = new Schema({
   name:String,
   paragraph:String,
   impact: String,
-  image1:{ contentType: String, data: Buffer},
-  image2:{ contentType: String, data: Buffer},
+  images:[{ contentType: String, data: Buffer}],
   priority:Number
 });
 //
