@@ -207,6 +207,11 @@ router.get('/members',function(req,res){
 
 
 router.post("/event", upload.array('myImages', 6), function(req, res){
+  try {
+    fs.mkdirSync(path.join(__dirname, '/uploads/'))
+  } catch (err) {
+    if (err.code !== 'EEXIST') throw err
+  }
        var eventCategory        = req.body.eventCategory;
        var name                 = req.body.name;
        var department = req.body.department;
