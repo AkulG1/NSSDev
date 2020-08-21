@@ -233,19 +233,19 @@ router.post("/event", upload.array('myImages', 6), function(req, res){
                         images : images
                   }   
                   const directory = 'uploads';
-fs.readdir(directory, (err, files) => {
-  if (err) throw err;
-
-  for (const file of files) {
-    fs.unlink(path.join(directory, file), err => {
-      if (err) throw err;
-    });
-  }
-});   
    Events.create(newEvent, function(err, newlyCreated){            
             if(err){
               console.log(err);
             } else {
+              fs.readdir(directory, (err, files) => {
+                if (err) throw err;
+                for (const file of files) {
+                  fs.unlink(path.join(directory, file), err => {
+                    if (err) throw err;
+                  });
+                }
+              });   
+
               console.log("success");
               res.redirect('/');
             }
