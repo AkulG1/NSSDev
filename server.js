@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express = require('express');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
@@ -14,7 +15,7 @@ var MongoStore = require('connect-mongo/es5')(session);
 var passport = require('passport');
 
 //importing secret file from config folder
-var secret = require('./config/secret');
+
 //importing user file from models folder
 var User = require('./models/user');
 var eventCategory = require('./models/eventCategory');
@@ -23,7 +24,7 @@ var eventCategory = require('./models/eventCategory');
 
 var app = express(); // object of express
 //dbuser:dbpassword
-mongoose.connect(secret.database,function(err){
+mongoose.connect(process.env.database,function(err){
   if(err){
     console.log(err);
   }else{
@@ -41,8 +42,8 @@ app.use(session({
   resave:true,
   saveUninitialized:true,
   cookie:{maxAge:3600*1000},
-  secret:secret.secretKey,
-  store:new MongoStore({url:secret.database,autoReconnect:true})
+  secret:process.env.secretKey,
+  store:new MongoStore({url: process.env.database,autoReconnect:true})
 }));
 app.use(flash());
 app.use(passport.initialize());
@@ -87,7 +88,7 @@ app.use(userRoutes);
 //this function is for starting the server
 //3000 is the port no
 //listen will work fine even without function(err)
-app.listen(secret.port,function(err){
+app.listen(process.env.PORT,function(err){
   if(err) throw err;
-  console.log("Server is Running on port "+secret.port);
+  console.log("Server is Running on port "+ (process.env.PORT));
 });
