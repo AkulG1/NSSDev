@@ -277,7 +277,7 @@ router.post("/eventsCategory", function(req, res){
 
 router.get('/events/recent', function(req, res, next) {
   Events
-  .find({eventCategory:"Recent"}, null, {sort: {date: 1}}, function(err, events){
+  .find({eventCategory:"Recent"}, null, {sort: {date: -1}}, function(err, events){
     if(err){
       console.log(err);  
     } else {
@@ -291,7 +291,7 @@ router.get('/events/recent', function(req, res, next) {
 
 router.get('/events/upcoming', function(req, res, next) {
   Events
-  .find({eventCategory:"Upcoming"}, null, {sort: {date: 1}}, function(err, events){
+  .find({eventCategory:"Upcoming"}, null, {sort: {date: -1}}, function(err, events){
     if(err){
       console.log(err);  
     } else {
@@ -305,7 +305,7 @@ router.get('/events/upcoming', function(req, res, next) {
 
 router.get('/events/regular',  function(req, res, next) {
   Events
-  .find({eventCategory:"Regular"}, null, {sort: {date: 1}}, function(err, events){
+  .find({eventCategory:"Regular"}, null, {sort: {date: -1}}, function(err, events){
     if(err){
       console.log(err);  
     } else {
@@ -319,7 +319,7 @@ router.get('/events/regular',  function(req, res, next) {
 
 router.get('/events/camp', function(req, res, next) {
   Events
-  .find({eventCategory:"Camp"}, null, {sort: {date: 1}}, function(err, events){
+  .find({eventCategory:"Camp"}, null, {sort: {date: -1}}, function(err, events){
     if(err){
       console.log(err);  
     } else {
@@ -333,7 +333,7 @@ router.get('/events/camp', function(req, res, next) {
 
 router.get('/events/past', function(req, res, next) {
   Events
-  .find({eventCategory:"Past"}, null, {sort: {date: 1}}, function(err, events){
+  .find({eventCategory:"Past"}, null, {sort: {date: -1}}, function(err, events){
     if(err){
       console.log(err);  
     } else {
