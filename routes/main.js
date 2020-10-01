@@ -1,6 +1,6 @@
 var router = require('express').Router();
 var User = require('../models/user');
-var Config = require('../config/secret');
+// var Config = require('../config/secret');
 var Events = require('../models/event');
 let EventCategory = require('../models/eventCategory');
 var RecentNews = require('../models/recentNews');
@@ -146,7 +146,7 @@ router.get('/',function(req,res,next){
 
   RecentNews
   .find({})
-  .sort({ priority: -1 })
+  .sort({ date: -1 })
   .exec(function(err, recentNews) {
     if (err) return next(err);
     res.render('main/home', {
@@ -210,7 +210,7 @@ router.post("/event", upload.array('myImages', 6), function(req, res){
        var eventCategory        = req.body.eventCategory;
        var name                 = req.body.name;
        var department = req.body.department;
-       var priority             = req.body.priority;
+       var date             = req.body.date;
        let para                 = req.body.para;
        let impact               = req.body.impact;
        let images=[];
@@ -227,7 +227,7 @@ router.post("/event", upload.array('myImages', 6), function(req, res){
                          eventCategory    : eventCategory,
                          department : department,  
                          name             : name,
-                         priority         : priority,
+                         date         : date,
                          paragraph        : para,
                          impact           : impact,
                         images : images
@@ -256,11 +256,11 @@ router.post("/event", upload.array('myImages', 6), function(req, res){
 
 router.post("/eventsCategory", function(req, res){
        var name        = req.body.name;
-       var priority    = req.body.priority;
+       var date    = req.body.date;
        var newEvent    = {
                          
                          name        : name,
-                         priority    : priority,
+                         date    : date,
                                            }      
    EventCategory.create(newEvent, function(err, newlyCreated){            
             if(err){
@@ -277,11 +277,11 @@ router.post("/eventsCategory", function(req, res){
 
 router.get('/events/recent', function(req, res, next) {
   Events
-  .find({}, function(err, events){
+  .find({eventCategory:"Recent"}, null, {sort: {date: 1}}, function(err, events){
     if(err){
       console.log(err);  
     } else {
-       res.render("main/recent", {events:events});
+       res.render("main/eventList", {Title:"Recent Events", events:events});
       }
 
 });
@@ -291,11 +291,11 @@ router.get('/events/recent', function(req, res, next) {
 
 router.get('/events/upcoming', function(req, res, next) {
   Events
-  .find({}, function(err, events){
+  .find({eventCategory:"Upcoming"}, null, {sort: {date: 1}}, function(err, events){
     if(err){
       console.log(err);  
     } else {
-       res.render("main/upcoming", {events:events});
+       res.render("main/eventList", {Title:"Upcoming Events", events:events});
       }
 
 });
@@ -303,13 +303,13 @@ router.get('/events/upcoming', function(req, res, next) {
 
 
 
-router.get('/events/regular', function(req, res, next) {
+router.get('/events/regular',  function(req, res, next) {
   Events
-  .find({}, function(err, events){
+  .find({eventCategory:"Regular"}, null, {sort: {date: 1}}, function(err, events){
     if(err){
       console.log(err);  
     } else {
-       res.render("main/regular", {events:events});
+       res.render("main/eventList", {Title:"Regular Events",events:events});
       }
 
 });
@@ -319,11 +319,11 @@ router.get('/events/regular', function(req, res, next) {
 
 router.get('/events/camp', function(req, res, next) {
   Events
-  .find({}, function(err, events){
+  .find({eventCategory:"Camp"}, null, {sort: {date: 1}}, function(err, events){
     if(err){
       console.log(err);  
     } else {
-       res.render("main/camp", {events:events});
+       res.render("main/eventList", {Title:"Camps", events:events});
       }
 
 });
@@ -333,11 +333,11 @@ router.get('/events/camp', function(req, res, next) {
 
 router.get('/events/past', function(req, res, next) {
   Events
-  .find({}, function(err, events){
+  .find({eventCategory:"Past"}, null, {sort: {date: 1}}, function(err, events){
     if(err){
       console.log(err);  
     } else {
-       res.render("main/past", {events:events});
+       res.render("main/eventList", {Title:"Past Events", events:events});
       }
 
 });

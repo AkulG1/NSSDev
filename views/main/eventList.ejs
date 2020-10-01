@@ -8,18 +8,22 @@
               <div class="row card-panel">
                   <div  class="col s12">
 
-                      <h3 class="center header text_h2"><span class="span_h2">Regular events</span></h3>
+                      <h3 class="center header text_h2"><span class="span_h2"><%= Title %></span></h3>
                   </div>
 
           </div>
-
+<% const monthNames = ["January", "February", "March", "April", "May", "June",
+"July", "August", "September", "October", "November", "December"
+]; 
+%>
 
           
           <% for(var i=0; i < events.length; i++) { %>
-            <% if(events[i].eventCategory === "Regular")  { %>
             <div class="row card-panel">
             <div class="col s12 left">
               <h4 class="header"><%= events[i].name %></h4>
+              <% const d= events[i].date%>
+              <h6><%= d.getDate() +" "+ monthNames[d.getMonth()] +" "+ d.getFullYear() %></h6>
               <!-- <p id="<%=events[i]._id %>" class="light"><%= events[i].paragraph%></p> -->
               <a class="waves-effect waves-light btn center" href="/event/<%= events[i]._id %>">Read More</a>
               <!-- <script>
@@ -31,7 +35,6 @@
             </div>
           </div>
           
-              <% } %>
             <% } %>
       </div>
 </div>

@@ -13,7 +13,7 @@ var EventSchema = new Schema({
   paragraph:String,
   impact: String,
   images:[{ contentType: String, data: Buffer}],
-  priority:Number
+  date:Date
 });
 //
 // EventSchema.plugin(mongoosastic,{
