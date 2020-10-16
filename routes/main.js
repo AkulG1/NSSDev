@@ -344,7 +344,6 @@ router.get('/events/past', function(req, res, next) {
 });
 
 
-
 router.post('/contact', function(req, res, next) {
   if(req.body.name == '' || req.body.name == 'undefined')
   {
