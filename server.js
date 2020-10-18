@@ -24,7 +24,7 @@ var eventCategory = require('./models/eventCategory');
 
 var app = express(); // object of express
 //dbuser:dbpassword
-mongoose.connect(process.env.database,function(err){
+mongoose.connect(process.env.database, {useMongoClient: true, connectWithNoPrimary: true} , function(err){
   if(err){
     console.log(err);
   }else{
