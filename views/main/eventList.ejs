@@ -23,7 +23,9 @@
             <div class="col s12 left">
               <h4 class="header"><%= events[i].name %></h4>
               <% const d= events[i].date%>
+              <% if(d!=null){%>
               <h6><%= d.getDate() +" "+ monthNames[d.getMonth()] +" "+ d.getFullYear() %></h6>
+              <%}%>
               <!-- <p id="<%=events[i]._id %>" class="light"><%= events[i].paragraph%></p> -->
               <a class="waves-effect waves-light btn center" href="/event/<%= events[i]._id %>">Read More</a>
               <!-- <script>
