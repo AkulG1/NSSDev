@@ -19,7 +19,7 @@
 
           
           <% for(var i=0; i < events.length; i++) { %>
-            <div class="row card-panel">
+            <div class="row l6 card-panel center">
             <div class="col s12 left">
               <h4 class="header"><%= events[i].name %></h4>
               <% const d= events[i].date%>
@@ -38,6 +38,30 @@
           </div>
           
             <% } %>
+            <% if (events.length==0) { %>
+              <div class="row card-panel">
+              <div class="col s12 left">
+              <div style="border-radius: 5vw;" class="row content">
+                <svg viewBox="0 0 960 300">
+                  <symbol id="s-text">
+                    <text text-anchor="middle" x="50%" y="50%">404</text>
+                  </symbol>
+                
+                  <g class = "g-ants">
+                    <use xlink:href="#s-text" class="text"></use>
+                    <use xlink:href="#s-text" class="text"></use>
+                    <use xlink:href="#s-text" class="text"></use>
+                    <use xlink:href="#s-text" class="text"></use>
+                    <use xlink:href="#s-text" class="text"></use>
+                  </g>
+                </svg>
+              </div>
+              <div class="row">
+                <h5 style="text-align: center;font-weight: 100;color: rgb(226, 4, 4);">None found right now.</h5>
+              </div>
+              </div>
+              </div>
+              <% } %>
       </div>
 </div>
     </div>

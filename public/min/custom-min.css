@@ -1,13 +1,72 @@
+html,body{
+    position: relative;
+}
 .default_color {
-    background-color: #2196F3 !important
+    background-color: #334692 !important
 }
 
 .default_color_text {
-    color: #2196F3 !important
+    color: #334692!important
 }
 
 .icon-block {
     padding: 0 15px
+}
+.collection.with-header {
+    border: none;
+}
+.card-panel{
+    border-radius: 5vw;
+}
+.LI-badge-container-vertical-light.LI-badge-container.vertical.light.large {
+    border-radius: 4vw;
+}
+.LI-profile-pic-container {
+    border-radius: 4vw 4vw 0 0;
+}
+#intro .btn{
+    border-radius: 100px;
+    background-color: rgb(226, 4, 4);
+}
+#intro .btn:hover{
+    border-style: solid;
+    border-color: rgb(226, 4, 4);
+    color: rgb(226, 4, 4);
+    background-color: #ffffff;
+    padding: auto;
+}
+#btn-cta{
+    margin-left: 10%;
+    position: absolute;
+    float: left;
+    z-index: 3;
+    top: 38rem;
+}
+#btn-cta > a{
+    background-color: rgb(226, 4, 4);
+    border-radius: 100px;
+    padding: 10px 20px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+#mainsec{
+    margin-top: 40px;
+}
+ul.indicators{
+    visibility:hidden;
+}
+#content{
+    position: relative;
+    height: 40rem!important;
+    overflow: hidden;
+}
+#content > ul,
+#content > ul li,
+#content > ul li img{
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
 }
 
 #contact-container{
@@ -52,7 +111,7 @@
     font-size: 2.1rem;
     font-style: normal;
     font-weight: 100;
-    padding: 0;
+    padding: 0 10px;
     letter-spacing: 7px
 }
 
@@ -62,6 +121,8 @@
     height:50px;
     width:inherit;
     margin: 4px;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
 }
 
 .text_h2 {
@@ -71,16 +132,16 @@
 
 .span_h2 {
     font-weight: 300;
-    color: #2196F3
+    color: #334692;
 }
 
 .text_b {
-    color: #2196F3
+    color: #334692;
 }
 
 .in {
     font-weight: 400 !important;
-    font-style: normal !important
+    font-style: normal !important;
 }
 
 .promo i {
@@ -265,12 +326,46 @@ nav ul a {
         background-color: #2196F3;
         margin-bottom: -2rem;
     }
+    #btn-cta{
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+    #btn-cta > a{
+        font-size: 14px;
+    }
 }
 
 input,
 textarea {
     border-bottom: 1px solid #fff
 }
+.nav-wrapper ul li a {
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+  }
+  .nav-wrapper ul li a:hover {
+    background-color: #334692;
+  }
+.nav-wrapper ul li a:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 10px;
+    content: "";
+    display: block;
+    height: 3px;
+    left: 50%;
+    position: absolute;
+    background: rgb(226, 4, 4);
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+.nav-wrapper ul li a:hover:after { 
+    width: 50%; 
+    left: 23%; 
+  }
 
 nav a.button-collapse {
     left: -25px
@@ -308,8 +403,66 @@ nav a.button-collapse {
 }
 
 footer.page-footer {
-    margin-top: 0px !important
+    margin-top: 0px !important;
     position:relative;
     bottom: 0px;
     left:0px;
 }
+
+
+  svg {
+      font: 10.5em 'Monoton';
+  }
+  
+  .content{
+    margin: 0 auto;
+    font-weight: 800;
+    display: block;
+    background: #fff;
+    font-family: cursive;
+    margin: 0 auto; 
+    text-align: center;
+  }
+  
+  
+  .text {
+      fill: none;
+      stroke: white;
+      stroke-dasharray: 8% 29%;
+      stroke-width: 5px;
+      stroke-dashoffset: 1%;
+      animation: stroke-offset 5.5s infinite linear;
+  }
+  
+  .text:nth-child(1){
+      stroke: #1c234d;
+      animation-delay: -1;
+  }
+  
+  .text:nth-child(2){
+      stroke: #315b2c;
+      animation-delay: -2s;
+  }
+  
+  .text:nth-child(3){
+      stroke: #334692;
+      animation-delay: -3s;
+  }
+  
+  .text:nth-child(4){
+      stroke: #2f8f7f;
+      animation-delay: -4s;
+  }
+  
+  .text:nth-child(5){
+      stroke: #da2717;
+      animation-delay: -5s;
+  }
+  
+  @keyframes stroke-offset{
+      100% {
+      stroke-dashoffset: -35%;
+    }
+  }
+
+  
