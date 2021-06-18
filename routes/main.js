@@ -410,7 +410,7 @@ router.post('/', async function (req, res) {
   const pattern="^2K(19|2\d).[A-Z]{2,3}.[0-9]{3}"
 
   const auth = new google.auth.GoogleAuth({
-      keyFile: "./credentials.json",
+      keyFile: process.env.gac,
       scopes: "https://www.googleapis.com/auth/spreadsheets",
   });
   
