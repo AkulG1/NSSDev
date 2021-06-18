@@ -437,17 +437,11 @@ router.post('/', async function (req, res) {
     return res.end('Only valid for 2K19 and later batch');
   }  
   // through this i got the last column number
-  try{
     const getRows2 = await googleSheets.spreadsheets.values.get({
       auth,
       spreadsheetId,
       range: year + "!1:1",
   });
-  }
-  catch(err){
-    console.log(err);
-    return res.send("Invalid request. Please contact admin");
-  }
    
 
  const range=getRows2.data.values;
