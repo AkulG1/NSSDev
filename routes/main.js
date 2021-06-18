@@ -398,7 +398,7 @@ router.get('/hours', (req,res) => {
   res.render("main/hours");
 }); 
 
-router.post('/', async function (req, res) {
+router.post('/hours', async function (req, res) {
 
   let {
       name,
