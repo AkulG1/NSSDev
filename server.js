@@ -24,7 +24,7 @@ var eventCategory = require('./models/eventCategory');
 
 var app = express(); // object of express
 //dbuser:dbpassword
-mongoose.connect(process.env.database, {useNewUrlParser: true, connectWithNoPrimary: true} , function(err){
+mongoose.connect(process.env.database, {useNewUrlParser: true, connectWithNoPrimary: true, useUnifiedTopology: true} , function(err){
   if(err){
     console.log(err);
   }else{
@@ -36,7 +36,7 @@ mongoose.connect(process.env.database, {useNewUrlParser: true, connectWithNoPrim
 app.use(express.static(__dirname+'/public'));
 app.use(morgan('dev')); //object of morgan
 app.use(bodyParser.json()); // now our express application can parse json data also
-app.use(bodyParser.urlencoded({extended:true}));// now our express application can parse x-www-form-urlencoded data also
+app.use(express.urlencoded({extended:true}));// now our express application can parse x-www-form-urlencoded data also
 app.use(cookieParser());
 app.use(session({
   resave:true,

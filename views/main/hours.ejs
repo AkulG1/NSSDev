@@ -1,0 +1,22 @@
+<% layout('layout') -%>
+
+<div style="margin: 34px 20px 34px 20px;">
+    <h2>NSS Hours</h2>
+    <h5><i>Format: 2K19/MCE/003</i></h5>
+
+    <form action="/" method="POST" style="width: fit-content;">
+        <div class="name">
+            <label for="student-name">Name</label>
+            <input type="text" id="student-name" name="name">
+        </div>
+
+        <div class="roll-no">
+            <label for="student-password">Roll No</label>
+            <input type="text" id="student-password" name="rollNumber" pattern="^2(K|k)(19|2\d).[A-Z]{2,3}.[0-9]{2,3}$" required>
+        </div>
+        <button type="submit">Hours</button>
+    </form>
+
+</div>
+
+<!-- pattern="^2K(19|2\d).[A-Z]{2,3}.[0-9]{3}"  -->
